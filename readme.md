@@ -13,7 +13,8 @@ GET: Obtiene Reserva con ID igual al queryparam id almacenada en la sesión de R
 
 https://proyecto4-uo12.onrender.com/api/reservas?id=7186ed0e-df25-43e0-a6f9-38eabe2dbb97
 
-POST: Crea Reserva con el json del body
+POST: Crea Reserva con el json del Body
+
 https://proyecto4-uo12.onrender.com/api/reservas
 
 ejemplo Body:
