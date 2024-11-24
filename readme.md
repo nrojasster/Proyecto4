@@ -5,7 +5,8 @@
 
 Rutas:
 
-GET: Obtiene Todas Las Reservas almacenadas en la sesión de Render.com
+GET: Obtiene Todas Las Reservas almacenadas en la sesión de Render.com, sino hay reservas ingresadas en el arreglo, devuelve
+un arreglo vacio.
 
 https://proyecto4-uo12.onrender.com/api/reservas
 
@@ -27,5 +28,34 @@ ejemplo Body:
     "tipoHabitacion": "doble",
     "estado": "reservado"
   }
+
+PUT: Modifica Reserva con el json del Body y el id del param
+
+https://proyecto4-uo12.onrender.com/api/reservas/kdkkfdfdfsdf
+
+DELETE: Elimina Reserca según el id del param
+
+https://proyecto4-uo12.onrender.com/api/reservas/kdkkfdfdfsdf
+
+
+GET: Obtiene Reserva que coincidan con las queryparam fechaInicio y fechaTermino almacenadas en la sesión de Render
+
+https://proyecto4-uo12.onrender.com/api/reservas/ReservaPorFechas?fechaInicio=2024-02-15&fechaTermino=2024-02-17
+
+GET: Obtiene Reserva que coincidan con las queryparam estado almacenadas en la sesión de Render
+
+https://proyecto4-uo12.onrender.com/api/reservas/ReservaPorEstado?estado=anulado
+
+GET: Obtiene Reserva que coincidan con las queryparam hotel almacenadas en la sesión de Render
+
+https://proyecto4-uo12.onrender.com/api/reservas/ReservaPorHotel?hotel=ibis
+
+GET: Obtiene Reserva que coincidan con las queryparam tipoHabitacion almacenadas en la sesión de Render
+
+https://proyecto4-uo12.onrender.com/api/reservas/ReservaPorTipoHabitacion?tipoHabitacion=doble
+
+GET: Obtiene Reserva que coincidan con las queryparam numeroHuespedes almacenadas en la sesión de Render
+
+https://proyecto4-uo12.onrender.com/api/reservas/ReservaPorNumeroHuespedes?numeroHuespedes=1
 
 

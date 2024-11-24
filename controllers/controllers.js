@@ -37,17 +37,22 @@ const crearReservas = async (req, res) => {
 
 //2. Muestra todas las reservas o solo una si el id esta presente
 const buscarReservaHotel = async (req, res) => {
-    const idBusq = req.query.id || "all"
-    if (idBusq ==="all"){
-        const reserva = aReservas;
-        res.json(reserva);
-    } else {
-        const reserva = aReservas.find(r => r.id === idBusq)
-        if (reserva.length === 0) {
-            return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
-        } else {
+    try{
+        const idBusq = req.query.id || "all"
+        if (idBusq ==="all"){
+            const reserva = aReservas;
             res.json(reserva);
+        } else {
+            const reserva = aReservas.filter(r => r.id === idBusq)
+            if (reserva.length === 0) {
+                return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
+            } else {
+                res.json(reserva);
+            }
         }
+    }
+    catch (err) {
+        res.json({ Mensaje: 'Error al Buscar La Reserva'})
     }
 }
 
@@ -103,88 +108,113 @@ const actualizarReserva = async (req, res) => {
 
 // 5. Obtener reservas por rango de fechas
 const obtenerReservaPorFechas= async (req, res)=> {
-    const {fechaInicio,fechaTermino} = req.query
+    try {
+        const {fechaInicio,fechaTermino} = req.query
+        
+        if(!fechaInicio || !fechaTermino){
+            return res.json('Error')
+        }
     
-    if(!fechaInicio || !fechaTermino){
-        return res.json('Error')
+        const fechaInicioFormateada = new Date(fechaInicio)
+        const fechaTerminoFormateada = new Date(fechaTermino)
+        
+        const reservasFiltradas = aReservas.filter(reserva => {
+            const inicioReserva = new Date(reserva.fechaInicio)
+            const finReserva = new Date(reserva.fechaTermino)
+            return inicioReserva >= fechaInicioFormateada && finReserva <= fechaTerminoFormateada
+        })
+        if (reservasFiltradas.length === 0) {
+            return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
+        } else {
+            res.json(reservasFiltradas);
+        }
     }
- 
-    const fechaInicioFormateada = new Date(fechaInicio)
-    const fechaTerminoFormateada = new Date(fechaTermino)
-    
-    const reservasFiltradas = aReservas.find(reserva => {
-        const inicioReserva = new Date(reserva.fechaInicio)
-        const finReserva = new Date(reserva.fechaTermino)
-        return inicioReserva >= fechaInicioFormateada && finReserva <= fechaTerminoFormateada
-    })
-    if (reservasFiltradas.length === 0) {
-        return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
-    } else {
-        res.json(reservasFiltradas);
+    catch (err) {
+        res.json({ Mensaje: 'Error No Se Encontraron Reservas'})
     }
 }
 
 //6. Muestra todas las reservas que tengan el mismo hotel
 const buscarReservaxHotel = async (req, res) => {
-    const idBusq = req.query.hotel || "all"
-    if (idBusq ==="all"){
-        const reserva = aReservas;
-        res.json(reserva);
-    } else {
-        const reserva = aReservas.filter(r => r.hotel.toUpperCase() === idBusq.toUpperCase())
-        if (reserva.length === 0) {
-            return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
-        } else {
+    try {
+        const idBusq = req.query.hotel || "all"
+        if (idBusq ==="all"){
+            const reserva = aReservas;
             res.json(reserva);
+        } else {
+            const reserva = aReservas.filter(r => r.hotel.toUpperCase() === idBusq.toUpperCase())
+            if (reserva.length === 0) {
+                return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
+            } else {
+                res.json(reserva);
+            }
         }
+    }
+    catch (err) {
+        res.json({ Mensaje: 'Error No Se Encontraron Reservas'})
     }
 }
 
 //7. Muestra todas las reservas que tengan el mismo tipo habitacion de req.query.tipoHabitacion
 const buscarTipoHabitacion = async (req, res) => {
-    const idBusq = req.query.tipoHabitacion || "all"
-    if (idBusq ==="all"){
-        const reserva = aReservas;
-        res.json(reserva);
-    } else {
-        const reserva = aReservas.filter(r => r.tipoHabitacion.toUpperCase() === idBusq.toUpperCase())
-        if (reserva.length === 0) {
-            return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
-        } else {
+    try {
+        const idBusq = req.query.tipoHabitacion || "all"
+        if (idBusq ==="all"){
+            const reserva = aReservas;
             res.json(reserva);
+        } else {
+            const reserva = aReservas.filter(r => r.tipoHabitacion.toUpperCase() === idBusq.toUpperCase())
+            if (reserva.length === 0) {
+                return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
+            } else {
+                res.json(reserva);
+            }
         }
+    }
+    catch (err) {
+        res.json({ Mensaje: 'Error No Se Encontraron Reservas'})
     }
 }
 
 //8. Muestra todas las reservas que tengan el mismo estado de req.query.estado
 const buscarReservaxEstado = async (req, res) => {
-    const idBusq = req.query.estado || "all"
-    if (idBusq ==="all"){
-        const reserva = aReservas;
-        res.json(reserva);
-    } else {
-        const reserva = aReservas.filter(r => r.estado.toUpperCase() === idBusq.toUpperCase())
-        if (reserva.length === 0) {
-            return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
-        } else {
+    try{
+        const idBusq = req.query.estado || "all"
+        if (idBusq ==="all"){
+            const reserva = aReservas;
             res.json(reserva);
+        } else {
+            const reserva = aReservas.filter(r => r.estado.toUpperCase() === idBusq.toUpperCase())
+            if (reserva.length === 0) {
+                return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
+            } else {
+                res.json(reserva);
+            }
         }
+    }
+    catch (err) {
+        res.json({ Mensaje: 'Error No Se Encontraron Reservas'})
     }
 }
 
 //9. Muestra todas las reservas que tengan el mismo número de huespedes de req.query.numeroHuespedes
 const buscarReservaxNumeroHuespedes = async (req, res) => {
-    const idBusq = req.query.numeroHuespedes || "all"
-    if (idBusq ==="all"){
-        const reserva = aReservas;
-        res.json(reserva);
-    } else {
-        const reserva = aReservas.filter(r => r.huespedes === Number(idBusq))
-        if (reserva.length === 0) {
-            return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
-        } else {
+    try{
+        const idBusq = req.query.numeroHuespedes || "all"
+        if (idBusq ==="all"){
+            const reserva = aReservas;
             res.json(reserva);
+        } else {
+            const reserva = aReservas.filter(r => r.huespedes === Number(idBusq))
+            if (reserva.length === 0) {
+                return res.status(404).json({ Resp: 'No Se Encontraron Reservas' })
+            } else {
+                res.json(reserva);
+            }
         }
+    }
+    catch (err) {
+        res.json({ Mensaje: 'Error No Se Encontraron Reservas'})
     }
 }
 
