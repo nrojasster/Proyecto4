@@ -34,7 +34,7 @@ PUT: Modifica Reserva con el json del Body y el id del param
 
 https://proyecto4-1-yhiy.onrender.com/api/reservas/kdkkfdfdfsdf
 
-DELETE: Elimina Reserca según el id del param
+DELETE: Elimina Reserva según el id del param
 
 https://proyecto4-1-yhiy.onrender.com/api/reservas/kdkkfdfdfsdf
 

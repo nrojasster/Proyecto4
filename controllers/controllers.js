@@ -21,7 +21,14 @@ const crearReservas = async (req, res) => {
     try {
         const id = uuidv4();
         const {nombre, hotel, fechaInicio, fechaTermino, huespedes, tipoHabitacion, estado} = req.body;
-        
+        if (!nombre) return res.json({ Mensaje: 'Error al Crear La Reserva. Falta dato nombre'});
+        if (!fechaInicio) return res.json({ Mensaje: 'Error al Crear La Reserva. Falta dato fechaInicio'});
+        if (!fechaTermino) return res.json({ Mensaje: 'Error al Crear La Reserva. Falta Dato fechaTermino'});
+        if (!hotel) return res.json({ Mensaje: 'Error al Crear La Reserva. Falta Dato hotel'});
+        if (!tipoHabitacion) return res.json({ Mensaje: 'Error al Crear La Reserva. Falta Dato tipoHabitacion'});
+        if (!estado) return res.json({ Mensaje: 'Error al Crear La Reserva. Falta dato estado'});
+        if (!huespedes) return res.json({ Mensaje: 'Error al Crear La Reserva. Falta dato huespedes'});
+
         const reserva = new Reserva(id, nombre, hotel, fechaInicio, fechaTermino, huespedes, tipoHabitacion, estado);    
         aReservas.push(reserva);
         res.json({
