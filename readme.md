@@ -39,23 +39,23 @@ DELETE: Elimina Reserva según el id del param
 https://proyecto4-1-yhiy.onrender.com/api/reservas/kdkkfdfdfsdf
 
 
-GET: Obtiene Reserva que coincidan con las queryparam fechaInicio y fechaTermino almacenadas en la sesión de Render
+GET: Obtiene Reserva que coincidan con las queryparam fechaInicio y fechaTermino almacenadas en la sesión de Render, si el queryparam se omite se muestran todas las reservas (get all)
 
 https://proyecto4-1-yhiy.onrender.com/api/reservas/ReservaPorFechas?fechaInicio=2024-02-15&fechaTermino=2024-02-17
 
-GET: Obtiene Reserva que coincidan con las queryparam estado almacenadas en la sesión de Render
+GET: Obtiene Reserva que coincidan con las queryparam estado almacenadas en la sesión de Render, si el queryparam se omite se muestran todas las reservas (get all)
 
 https://proyecto4-1-yhiy.onrender.com/api/reservas/ReservaPorEstado?estado=anulado
 
-GET: Obtiene Reserva que coincidan con las queryparam hotel almacenadas en la sesión de Render
+GET: Obtiene Reserva que coincidan con las queryparam hotel almacenadas en la sesión de Render, si el queryparam se omite se muestran todas las reservas (get all)
 
 https://proyecto4-1-yhiy.onrender.com/api/reservas/ReservaPorHotel?hotel=ibis
 
-GET: Obtiene Reserva que coincidan con las queryparam tipoHabitacion almacenadas en la sesión de Render
+GET: Obtiene Reserva que coincidan con las queryparam tipoHabitacion almacenadas en la sesión de Render, si el queryparam se omite se muestran todas las reservas (get all)
 
 https://proyecto4-1-yhiy.onrender.com/api/reservas/ReservaPorTipoHabitacion?tipoHabitacion=doble
 
-GET: Obtiene Reserva que coincidan con las queryparam numeroHuespedes almacenadas en la sesión de Render
+GET: Obtiene Reserva que coincidan con las queryparam numeroHuespedes almacenadas en la sesión de Render, si el queryparam se omite se muestran todas las reservas (get all)
 
 https://proyecto4-1-yhiy.onrender.com/api/reservas/ReservaPorNumeroHuespedes?numeroHuespedes=1
 
